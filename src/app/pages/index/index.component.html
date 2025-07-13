@@ -1,0 +1,452 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-tnn-green">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#" onclick="return false;">
+      <i class="bi bi-robot me-2"></i>{{title}}
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#beneficios">Vantagens</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#precos">Preços</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/auth" routerLinkActive="active">
+            <i class="bi bi-arrow-right-circle me-1"></i>Entrar
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="bg-tnn-green text-white py-5">
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-6">
+        <div class="badge bg-light text-dark mb-3 px-3 py-2">
+          <i class="bi bi-whatsapp text-success me-2"></i>
+          Integração com WhatsApp
+        </div>
+        <h1 class="display-4 fw-bold mb-4">{{subtitle}}</h1>
+        <p class="lead mb-4">{{description}}</p>
+
+        <div class="d-flex flex-column flex-md-row gap-3 mb-4">
+          <a routerLink="/start-free" class="btn btn-light btn-lg px-4">
+            <i class="bi bi-gift me-2"></i>Teste Grátis 14 Dias
+          </a>
+          <a href="#como-funciona" class="btn btn-outline-light btn-lg px-4">
+            <i class="bi bi-play-circle me-2"></i>Como Funciona
+          </a>
+        </div>
+
+        <div class="d-flex align-items-center text-white-50">
+          <i class="bi bi-check-circle-fill text-warning me-2"></i>
+          <small>Sem taxa de setup • Cancele quando quiser</small>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="position-relative">
+          <div class="chatbot-demo bg-white rounded-4 p-4 shadow-lg">
+            <div class="d-flex align-items-center mb-3">
+              <div class="bg-success rounded-circle p-2 me-3">
+                <i class="bi bi-robot text-white"></i>
+              </div>
+              <div>
+                <strong class="text-dark">ChatBot da Empresa XYZ</strong>
+                <div class="text-success small">Online agora</div>
+              </div>
+            </div>
+            <div class="chat-messages">
+              <div class="message-sent mb-2">
+                <div class="bg-primary text-white rounded-3 p-2 small">
+                  Olá! Onde posso encontrar um lugar para concertar meu celular?
+                </div>
+              </div>
+              <div class="message-received">
+                <div class="bg-light text-dark rounded-3 p-2 small">
+                  Olá, a loja <i>Suporte informatica</i> é uma opção para realizar reparos em aparelhos telefonicos e smartphones. Telefone para contato é 035 3125000. Rua das Flores, 123, Centro.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="position-absolute top-0 start-0 translate-middle">
+            <span class="badge bg-warning text-dark rounded-pill px-3 py-2">
+              <i class="bi bi-lightning-fill me-1"></i>IA Respondendo
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Como Funciona Section -->
+<section id="como-funciona" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="display-5 mb-4">Como Funciona?</h2>
+        <p class="lead text-muted">Simples, rápido e totalmente automatizado</p>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-center mb-4">
+        <div class="step-item">
+          <div class="step-number bg-tnn-green text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+            <span class="h3 mb-0">1</span>
+          </div>
+          <h5>Cadastre sua Empresa</h5>
+          <p class="text-muted">Forneça informações detalhadas sobre seu negócio, produtos, serviços, horários e políticas.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center mb-4">
+        <div class="step-item">
+          <div class="step-number bg-tnn-green text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+            <span class="h3 mb-0">2</span>
+          </div>
+          <h5>IA Aprende sobre seu Negócio</h5>
+          <p class="text-muted">Nossa inteligência artificial processa todas as informações e cria uma base de conhecimento personalizada.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 text-center mb-4">
+        <div class="step-item">
+          <div class="step-number bg-tnn-green text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+            <span class="h3 mb-0">3</span>
+          </div>
+          <h5>Clientes Interagem no WhatsApp</h5>
+          <p class="text-muted">Os clientes fazem perguntas via WhatsApp para o número <b><i>358403-4754</i></b> e recebem respostas precisas instantaneamente, 24/7.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefícios Section -->
+<section id="beneficios" class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="display-5 mb-4">Por que usar nosso ChatBot?</h2>
+        <p class="lead text-muted">Aumento significativo no alcance dos seus serviços, rápida captação de clientes e tira duvidas sobre seu negócio</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="bg-tnn-green text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+              <i class="bi bi-clock-history h4 mb-0"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h5>Atendimento 24/7</h5>
+            <p class="text-muted">Os clientes recebem respostas instantâneas a qualquer hora do dia, mesmo quando você está fechado.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="bg-tnn-green text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+              <i class="bi bi-graph-up-arrow h4 mb-0"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h5>Aumento de Vendas</h5>
+            <p class="text-muted">Respostas rápidas e precisas geram mais conversões e vendas para seu negócio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="bg-tnn-green text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+              <i class="bi bi-whatsapp h4 mb-0"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h5>Integração WhatsApp</h5>
+            <p class="text-muted">Funciona diretamente no WhatsApp, o canal de comunicação preferido dos brasileiros.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <div class="bg-tnn-green text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+              <i class="bi bi-gear h4 mb-0"></i>
+            </div>
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <h5>Fácil Configuração</h5>
+            <p class="text-muted">Setup simples e rápido. Em poucos cliques suas informações já estarão no ar!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Preços Section -->
+<section id="precos" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center mb-5">
+        <h2 class="display-5 mb-4">Planos e Preços</h2>
+        <p class="lead text-muted">Comece grátis e veja os resultados</p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg border-0">
+          <div class="card-header bg-tnn-green text-white text-center py-4">
+            <h3 class="card-title mb-0">
+              <i class="bi bi-star-fill me-2"></i>
+              Plano Essencial
+            </h3>
+          </div>
+          <div class="card-body text-center py-5">
+            <div class="mb-4">
+              <span class="badge bg-success fs-6 px-3 py-2 mb-3">
+                <i class="bi bi-gift me-2"></i>14 dias GRÁTIS
+              </span>
+              <div class="price-display">
+                <span class="text-muted text-decoration-line-through fs-5">R$ 19,99</span>
+                <div class="h1 text-tnn-green fw-bold">R$ 9,99<small class="fs-6 text-muted">/mês</small></div>
+              </div>
+            </div>
+
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Respostas ilimitadas</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Integração WhatsApp</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>IA no controle</li>
+            </ul>
+
+            <a routerLink="/start-free" class="btn btn-tnn-green btn-lg px-5 py-3">
+              <i class="bi bi-rocket-takeoff me-2"></i>
+              Começar Teste Grátis
+            </a>
+            <div class="mt-3">
+              <small class="text-muted">
+                <i class="bi bi-shield-check me-1"></i>
+                Sem compromisso • Cancele quando quiser
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-tnn-green text-white">
+  <div class="container">
+    <div class="row">
+      <!-- Left Column - Call to Action -->
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <h2 class="display-5 mb-4">Pronto para alcançar maiores resultados?</h2>
+        <p class="lead mb-4">Não fazemos pedidos ou integração com empresas, disponibilizamos informações e ajudamos o cliente a encontrar seu serviço</p>
+
+        <div class="mb-4">
+          <div class="d-flex flex-column gap-3 text-white-50">
+            <div><i class="bi bi-check-circle me-2"></i>Setup em 5 minutos</div>
+            <div><i class="bi bi-check-circle me-2"></i>Sem conhecimento técnico</div>
+            <div><i class="bi bi-check-circle me-2"></i>Resultados rápidos</div>
+          </div>
+        </div>
+
+        <!-- <p class="lead mb-4">Preencha o formulário seguinte ou envie sua solicitação para <a href="mailto:contato@tinosnegocios.com.br" style="text-decoration: none;color:white">contato@tinosnegocios.com.br</a></p> -->
+      </div>
+
+      <!-- Right Column - Contact Form -->
+      <div class="col-lg-6">
+        <div class="card bg-white text-dark shadow-lg border-0">
+          <div class="card-header bg-light border-0 text-center py-3">
+            <h4 class="mb-0 text-tnn-green">
+              <i class="bi bi-envelope me-2"></i>
+              Entre em Contato
+            </h4>
+            <p class="text-muted mb-0 small">Tire suas dúvidas ou faça uma solicitação</p>
+          </div>
+
+          <div class="card-body p-4">
+            <div *ngIf="emailSent" class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              <strong>Email enviado com sucesso!</strong> Retornaremos o mais rápido possivel.
+              <button type="button" class="btn-close" (click)="emailSent = false"></button>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="emailError" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <strong>Erro ao enviar email.</strong> Tente novamente.
+              <button type="button" class="btn-close" (click)="emailError = false"></button>
+            </div>
+
+            <form (ngSubmit)="sendEmail()" #contactForm="ngForm">
+
+              <!-- Nome -->
+              <div class="mb-3">
+                <label for="contactName" class="form-label fw-semibold">
+                  <i class="bi bi-person me-2 text-tnn-green"></i>Nome
+                </label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg contact-input"
+                  id="contactName"
+                  name="contactName"
+                  [(ngModel)]="contactData.name"
+                  placeholder="Digite seu nome ou nome do seu negócio"
+                  required
+                  minlength="3"
+                  maxlength="100"
+                  [class.is-invalid]="contactForm.submitted && !contactData.name"
+                  [class.is-valid]="contactData.name && contactData.name.length >= 3"
+                >
+                <div class="invalid-feedback">
+                  Por favor, informe seu nome completo.
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="contactEmail" class="form-label fw-semibold">
+                  <i class="bi bi-envelope me-2 text-tnn-green"></i>Email
+                </label>
+                <input
+                  type="email"
+                  class="form-control form-control-lg contact-input"
+                  id="contactEmail"
+                  name="contactEmail"
+                  [(ngModel)]="contactData.email"
+                  placeholder="seu@email.com"
+                  required
+                  email
+                  [class.is-invalid]="contactForm.submitted && (!contactData.email || !isValidEmail(contactData.email))"
+                  [class.is-valid]="contactData.email && isValidEmail(contactData.email)"
+                >
+                <div class="invalid-feedback">
+                  Por favor, informe um email válido.
+                </div>
+              </div>
+
+              <!-- Telefone -->
+              <div class="mb-3">
+                <label for="contactPhone" class="form-label fw-semibold">
+                  <i class="bi bi-telephone me-2 text-tnn-green"></i>Telefone
+                </label>
+                <input
+                  type="tel"
+                  class="form-control form-control-lg contact-input"
+                  id="contactPhone"
+                  name="contactPhone"
+                  [(ngModel)]="contactData.phone"
+                  (input)="onPhoneInput($event)"
+                  placeholder="35 9 99999999"
+                  required
+                  minlength="10"
+                  maxlength="13"
+                  [class.is-invalid]="contactForm.submitted && (!contactData.phone || !isValidPhone(contactData.phone))"
+                  [class.is-valid]="contactData.phone && isValidPhone(contactData.phone)"
+                >
+                <div class="invalid-feedback">
+                  Por favor, informe um telefone válido (ex: 35 9 9999999).
+                </div>
+                <div class="form-text">
+                  <small class="text-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Formato: Código da cidade + número (ex: 35 9 99999999)
+                  </small>
+                </div>
+              </div>
+
+              <!-- Dúvidas/Solicitação -->
+              <div class="mb-4">
+                <label for="contactMessage" class="form-label fw-semibold">
+                  <i class="bi bi-chat-text me-2 text-tnn-green"></i>Dúvidas/Solicitação
+                </label>
+                <textarea
+                  class="form-control contact-textarea"
+                  id="contactMessage"
+                  name="contactMessage"
+                  [(ngModel)]="contactData.message"
+                  placeholder="Descreva sua dúvida ou solicitação..."
+                  required
+                  minlength="10"
+                  maxlength="1000"
+                  rows="4"
+                  [class.is-invalid]="contactForm.submitted && (!contactData.message || contactData.message.length < 10)"
+                  [class.is-valid]="contactData.message && contactData.message.length >= 10"
+                ></textarea>
+                <div class="invalid-feedback">
+                  Por favor, descreva sua dúvida ou solicitação (mínimo 10 caracteres).
+                </div>
+                <div class="form-text d-flex justify-content-between">
+                  <span class="text-muted">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Seja específico para recebermos uma resposta mais direcionada
+                  </span>
+                  <span class="text-muted">
+                    {{ contactData.message ? contactData.message.length : 0 }}/1000
+                  </span>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid">
+                <button
+                  type="submit"
+                  class="btn btn-tnn-green btn-lg"
+                  [disabled]="!contactForm.valid || isSubmittingEmail"
+                >
+                  <span *ngIf="isSubmittingEmail" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  <i *ngIf="!isSubmittingEmail" class="bi bi-send me-2"></i>
+                  {{ isSubmittingEmail ? 'Enviando...' : 'Enviar Mensagem' }}
+                </button>
+              </div>
+
+              <div class="mt-3 text-center">
+                <small class="text-muted">
+                  <i class="bi bi-shield-lock me-1"></i>
+                  Seus dados estão seguros e não serão compartilhados
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h5><i class="bi bi-robot me-2"></i>{{title}}</h5>
+        <p class="text-muted mb-0">{{subtitle}}</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p class="text-muted mb-0">&copy; 2025 {{title}}. Todos os direitos reservados.</p>
+        <small class="text-muted">Transformando negócios com IA</small>
+      </div>
+    </div>
+  </div>
+</footer>

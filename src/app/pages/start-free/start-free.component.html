@@ -1,0 +1,260 @@
+<!-- Header -->
+<div class="bg-tnn-green text-white py-3" style="background: linear-gradient(135deg, #098484 0%, #076d6d 100%) !important; box-shadow: 0 4px 15px rgba(9, 132, 132, 0.2);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h5 class="mb-0" style="font-weight: 600;">
+          <i class="bi bi-robot me-2"></i>
+          Ti Nos Negócios - ChatBot Empresarial
+        </h5>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <a routerLink="/" class="btn btn-outline-light btn-sm" style="border: 2px solid rgba(255, 255, 255, 0.8); font-weight: 600;">
+          <i class="bi bi-arrow-left me-1"></i>Voltar ao Início
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="min-vh-100 bg-light d-flex align-items-center py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, rgba(9, 132, 132, 0.02) 50%, #e9ecef 100%) !important;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-6">
+        
+        <!-- Success State -->
+        <div *ngIf="isSuccess" class="card shadow-lg border-0 success-card" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important; background: linear-gradient(135deg, #f8f9fa 0%, rgba(9, 132, 132, 0.02) 100%); border-top: 4px solid #098484 !important;">
+          <div class="card-body text-center p-5">            
+            <h2 class="mb-3" style="color: #098484; font-weight: 700;">Cadastro Realizado com Sucesso!</h2>
+            <p class="lead text-muted mb-4">
+              Seu teste gratuito de 14 dias já foi ativado
+            </p>
+
+            <!-- Unique Code Display -->
+            <div class="unique-code-container mb-4">
+              <h5 class="mb-3" style="color: #098484; font-weight: 700;">Seu Código de Identificação:</h5>
+              <div class="code-display p-3 border rounded-3" style="background: linear-gradient(135deg, #f8f9fa 0%, rgba(9, 132, 132, 0.03) 100%); border: 3px dashed #098484 !important; border-radius: 15px; box-shadow: 0 4px 15px rgba(9, 132, 132, 0.1); position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease;" (click)="copyCodeToClipboard()" title="Clique para copiar o código">
+                <code class="h4 fw-bold" style="color: #076d6d; font-weight: 700; text-shadow: 0 1px 2px rgba(9, 132, 132, 0.1);">{{ uniqueCode }}</code>
+                <div class="mt-2">
+                  <small class="text-muted">
+                    <i class="bi bi-copy me-1"></i>
+                    Clique para copiar o código
+                  </small>
+                </div>
+                
+                <!-- Notification for copied code -->
+                <div *ngIf="isCodeCopied" class="copied-notification position-absolute top-50 start-50 translate-middle" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3); animation: fadeInOut 2s ease-in-out; z-index: 10;">
+                  <i class="bi bi-check-circle me-2"></i>
+                  Código copiado!
+                </div>
+              </div>
+            </div>
+
+            <!-- Trial Information -->
+            <div class="trial-info p-4 bg-warning bg-opacity-10 border border-warning rounded-3 mb-4">
+              <h6 class="text-warning mb-2">
+                <i class="bi bi-clock me-2"></i>Período de Teste Gratuito
+              </h6>
+              <ul class="list-unstyled mb-0 text-start">
+                <li class="mb-1">
+                  <i class="bi bi-check2 text-success me-2"></i>
+                  14 dias de acesso completo e gratuito
+                </li>
+                <li class="mb-1">
+                  <i class="bi bi-check2 text-success me-2"></i>
+                  Todos os recursos disponíveis
+                </li>
+                <li class="mb-1">
+                  <i class="bi bi-envelope text-primary me-2"></i>
+                  Aviso por email antes do vencimento
+                </li>
+                <li>
+                  <i class="bi bi-credit-card text-info me-2"></i>
+                  Opção de continuar com plano pago
+                </li>
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-grid gap-3">
+              <button (click)="goToAuth()" class="btn btn-lg" style="background: linear-gradient(135deg, #098484 0%, #076d6d 100%); border: none; color: white; font-weight: 600; letter-spacing: 0.5px; border-radius: 10px; padding: 15px 30px; transition: all 0.3s ease;">
+                <i class="bi bi-box-arrow-in-right me-2"></i>
+                Acessar Sistema Agora
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form State -->
+        <div *ngIf="!isSuccess" class="card shadow-lg border-0" style="border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important; border-top: 4px solid #098484 !important;">
+          <div class="card-header bg-white border-0 text-center py-4" style="border-radius: 20px 20px 0 0 !important; background: linear-gradient(135deg, #f8f9fa 0%, rgba(9, 132, 132, 0.02) 100%) !important;">
+            <h1 class="h3 mb-2" style="color: #098484; font-weight: 700;">Teste Grátis por 14 Dias</h1>
+            <p class="text-muted mb-0">
+              Experimente todos os recursos sem compromisso
+            </p>
+          </div>
+
+          <div class="card-body p-5">
+            
+            <!-- Error Alert -->
+            <div *ngIf="isError" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <strong>Erro no cadastro:</strong> {{ errorMessage }}
+              <button type="button" class="btn-close" (click)="isError = false"></button>
+            </div>
+
+            <!-- Sign Up Form -->
+            <form (ngSubmit)="onSubmit()" #signupForm="ngForm" novalidate>
+              
+              <!-- Nome Completo -->
+              <div class="mb-4">
+                <label for="name" class="form-label fw-semibold" style="color: #076d6d; font-weight: 600; display: flex; align-items: center;">
+                  <i class="bi bi-person me-2" style="color: #098484; font-size: 1.1rem;"></i>Nome Completo
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg signup-input" 
+                  id="name"
+                  name="name"
+                  [(ngModel)]="signupData.name"
+                  placeholder="Digite seu nome completo"
+                  required
+                  minlength="2"
+                  maxlength="100"
+                  [class.is-invalid]="signupForm.submitted && (!signupData.name || signupData.name.trim().length < 2)"
+                  [class.is-valid]="signupData.name && signupData.name.trim().length >= 2"
+                  style="border: 2px solid #e9ecef; border-radius: 12px; padding: 18px 24px; font-size: 1.1rem; transition: all 0.3s ease;"
+                >
+                <div class="invalid-feedback" style="color: #dc3545; font-weight: 500; font-size: 0.875rem; margin-top: 5px;">
+                  Nome deve ter pelo menos 2 caracteres.
+                </div>
+              </div>
+
+              <!-- Nome da Empresa -->
+              <div class="mb-4">
+                <label for="company" class="form-label fw-semibold" style="color: #076d6d; font-weight: 600; display: flex; align-items: center;">
+                  <i class="bi bi-building me-2" style="color: #098484; font-size: 1.1rem;"></i>Nome da Empresa
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg signup-input" 
+                  id="company"
+                  name="company"
+                  [(ngModel)]="signupData.company"
+                  placeholder="Digite o nome da sua empresa"
+                  required
+                  minlength="2"
+                  maxlength="100"
+                  [class.is-invalid]="signupForm.submitted && (!signupData.company || signupData.company.trim().length < 2)"
+                  [class.is-valid]="signupData.company && signupData.company.trim().length >= 2"
+                  style="border: 2px solid #e9ecef; border-radius: 12px; padding: 18px 24px; font-size: 1.1rem; transition: all 0.3s ease;"
+                >
+                <div class="invalid-feedback" style="color: #dc3545; font-weight: 500; font-size: 0.875rem; margin-top: 5px;">
+                  Nome da empresa deve ter pelo menos 2 caracteres.
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-4">
+                <label for="email" class="form-label fw-semibold" style="color: #076d6d; font-weight: 600; display: flex; align-items: center;">
+                  <i class="bi bi-envelope me-2" style="color: #098484; font-size: 1.1rem;"></i>Email Empresarial
+                </label>
+                <input 
+                  type="email" 
+                  class="form-control form-control-lg signup-input" 
+                  id="email"
+                  name="email"
+                  [(ngModel)]="signupData.email"
+                  placeholder="seu@empresa.com"
+                  required
+                  email
+                  [class.is-invalid]="signupForm.submitted && (!signupData.email || !isValidEmail(signupData.email))"
+                  [class.is-valid]="signupData.email && isValidEmail(signupData.email)"
+                  style="border: 2px solid #e9ecef; border-radius: 12px; padding: 18px 24px; font-size: 1.1rem; transition: all 0.3s ease;"
+                >
+                <div class="invalid-feedback" style="color: #dc3545; font-weight: 500; font-size: 0.875rem; margin-top: 5px;">
+                  Por favor, informe um email válido.
+                </div>
+              </div>
+
+              <!-- Telefone -->
+              <div class="mb-4">
+                <label for="phone" class="form-label fw-semibold" style="color: #076d6d; font-weight: 600; display: flex; align-items: center;">
+                  <i class="bi bi-telephone me-2" style="color: #098484; font-size: 1.1rem;"></i>Telefone de Contato
+                </label>
+                <input 
+                  type="tel" 
+                  class="form-control form-control-lg signup-input" 
+                  id="phone"
+                  name="phone"
+                  [(ngModel)]="signupData.phone"
+                  (input)="onPhoneInput($event)"
+                  placeholder="35 9 98509829"
+                  required
+                  [class.is-invalid]="signupForm.submitted && (!signupData.phone || !isValidPhone(signupData.phone))"
+                  [class.is-valid]="signupData.phone && isValidPhone(signupData.phone)"
+                  style="border: 2px solid #e9ecef; border-radius: 12px; padding: 18px 24px; font-size: 1.1rem; transition: all 0.3s ease; font-family: 'Courier New', monospace; letter-spacing: 1px;"
+                >
+                <div class="invalid-feedback" style="color: #dc3545; font-weight: 500; font-size: 0.875rem; margin-top: 5px;">
+                  Telefone deve ter 10 ou 11 dígitos.
+                </div>
+              </div>
+
+              <!-- Trial Information Box -->
+              <!-- <div class="trial-info-box p-4 rounded-3 mb-4" style="background: linear-gradient(135deg, rgba(9, 132, 132, 0.1) 0%, rgba(7, 109, 109, 0.05) 100%); border: 2px solid rgba(9, 132, 132, 0.2); border-radius: 15px; border-top: 3px solid #098484;">
+                <h6 class="mb-3" style="color: #076d6d; font-weight: 700;">
+                  <i class="bi bi-info-circle me-2"></i>Como funciona o teste gratuito:
+                </h6>
+                <ul class="list-unstyled mb-0 small">
+                  <li class="mb-2">
+                    <i class="bi bi-check-circle me-2" style="color: #098484; font-size: 1.1rem;"></i>
+                    <strong>14 dias completos</strong> de acesso a todos os recursos
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-check-circle me-2" style="color: #098484; font-size: 1.1rem;"></i>
+                    <strong>Sem cartão de crédito</strong> necessário neste momento
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-check-circle me-2" style="color: #098484; font-size: 1.1rem;"></i>
+                    <strong>Aviso por email</strong> 2 dias antes do vencimento
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle me-2" style="color: #098484; font-size: 1.1rem;"></i>
+                    <strong>Cancelamento gratuito</strong> a qualquer momento
+                  </li>
+                </ul>
+              </div>
+              -->
+
+              <!-- Submit Button -->
+              <div class="d-grid mb-3">
+                <button 
+                  type="submit" 
+                  class="btn btn-lg tnn-submit-btn"
+                  [disabled]="!signupForm.valid || isSubmitting"
+                  style="background: linear-gradient(135deg, #098484 0%, #076d6d 100%); border: none; color: white; font-weight: 600; letter-spacing: 0.5px; border-radius: 10px; padding: 15px 30px; transition: all 0.3s ease; position: relative; overflow: hidden;"
+                >
+                  <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status" style="color: white;"></span>
+                  <i *ngIf="!isSubmitting" class="bi bi-rocket-takeoff me-2"></i>
+                  {{ isSubmitting ? 'Processando...' : 'Iniciar Teste Gratuito' }}
+                </button>
+              </div>
+
+              <!-- Terms and Security -->
+              <div class="text-center">
+                <small class="text-muted">
+                  <i class="bi bi-shield-lock me-1"></i>
+                  Seus dados estão protegidos e não serão compartilhados.
+                  <br>
+                  Ao continuar, você concorda com nossos <a href="/termos-de-uso.pdf" style="text-decoration: none;">termos de uso.</a>
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

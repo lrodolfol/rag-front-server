@@ -1,0 +1,82 @@
+<div class="auth-container">
+  <div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="row w-100">
+      <div class="col-md-6 col-lg-4 mx-auto">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <!-- Logo/Brand -->
+            <div class="text-center mb-4">
+              <h2 class="text-primary fw-bold mb-2">{{title}}</h2>
+              <p class="">Acesso Seguro ao Sistema</p>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              {{ errorMessage }}
+            </div>
+
+            <!-- Success Message -->
+            <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>
+              {{ successMessage }}
+            </div>
+
+            <!-- Auth Form -->
+            <form (ngSubmit)="validateCode()" #authForm="ngForm">
+              <div class="mb-4">
+                <label for="accessCode" class="form-label fw-semibold">
+                  <i class="bi bi-key-fill me-2"></i>Código de Acesso
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg" 
+                  id="accessCode"
+                  name="accessCode"
+                  [(ngModel)]="accessCode"
+                  placeholder="Digite seu código de acesso único"
+                  required
+                  maxlength="10"
+                  [class.is-invalid]="accessCode !== null && accessCode.length > 0 && !isValidFormat()"
+                  [class.is-valid]="accessCode !== null && accessCode.length > 0 && isValidFormat()"
+                >
+                <div class="form-text">
+                  <i class="bi bi-info-circle me-1"></i>
+                  O código foi disponibilizado por nossa equipe para você
+                </div>
+              </div>
+
+              <div class="d-grid gap-2 mb-4">
+                <button 
+                  type="submit" 
+                  class="btn btn-primary btn-lg"
+                  [disabled]="!accessCode || accessCode.length < 6 || isLoading"
+                >
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  <i *ngIf="!isLoading" class="bi bi-shield-check me-2"></i>
+                  {{ isLoading ? 'Validando...' : 'Validar Código' }}
+                </button>
+              </div>
+            </form>
+
+            <!-- Help Text -->
+            <div class="text-center">
+              <small class="text-muted">
+                <i class="bi bi-question-circle me-1"></i>
+                Não possui um código de acesso? Entre em contato com o suporte.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-4">
+          <small class="text-muted">
+            <i class="bi bi-shield-lock me-1"></i>
+            Conexão segura e criptografada
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

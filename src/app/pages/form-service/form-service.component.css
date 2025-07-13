@@ -1,0 +1,244 @@
+/* Form Service Component Styles */
+.form-service-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+.text-primary {
+  color: #098484 !important;
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #098484 0%, #0a6b6b 100%) !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #098484 0%, #0a6b6b 100%);
+  border-color: #098484;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0a6b6b 0%, #098484 100%);
+  border-color: #0a6b6b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(9, 132, 132, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-outline-secondary {
+  border-color: #6c757d;
+  color: #6c757d;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  transform: translateY(-2px);
+}
+
+.custom-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-input {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  padding: 15px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.custom-input:focus {
+  border-color: #098484;
+  box-shadow: 0 0 0 0.2rem rgba(9, 132, 132, 0.25);
+  transform: translateY(-2px);
+}
+
+.custom-input.is-valid {
+  border-color: #198754;
+  background-color: #f8fff9;
+}
+
+.custom-input.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff8f8;
+}
+
+.custom-textarea {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  padding: 15px 20px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  resize: vertical;
+  min-height: 150px;
+}
+
+.custom-textarea:focus {
+  border-color: #098484;
+  box-shadow: 0 0 0 0.2rem rgba(9, 132, 132, 0.25);
+}
+
+.custom-textarea.is-valid {
+  border-color: #198754;
+  background-color: #f8fff9;
+}
+
+.custom-textarea.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff8f8;
+}
+
+.custom-submit-btn {
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+.form-label {
+  color: #495057;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.form-text {
+  font-size: 13px;
+  color: #6c757d;
+  margin-top: 5px;
+}
+
+.invalid-feedback {
+  font-size: 13px;
+  color: #dc3545;
+  margin-top: 5px;
+}
+
+.alert-success-custom {
+  background: linear-gradient(135deg, #198754 0%, #157347 100%);
+  border: none;
+  color: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  animation: slideInDown 0.5s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Character counter styling */
+.form-text .text-muted {
+  font-size: 12px;
+  color: #6c757d !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-service-container .container-fluid {
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  
+  .custom-input,
+  .custom-textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .display-5 {
+    font-size: 1.8rem;
+  }
+  
+  .d-grid.gap-2.d-md-flex {
+    gap: 0.5rem !important;
+  }
+  
+  .custom-submit-btn {
+    min-width: 100%;
+  }
+}
+
+/* Success message animation */
+.alert-success-custom .bi-check-circle-fill {
+  animation: checkmark 0.6s ease-in-out;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Loading state */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Focus improvements */
+.custom-input:focus,
+.custom-textarea:focus {
+  outline: none;
+}
+
+/* Icon styling */
+.bi {
+  line-height: 1;
+}
+
+/* Card header icon */
+.card-header .bi {
+  font-size: 1.2rem;
+}
+
+/* Form icons */
+.form-label .bi {
+  color: #098484;
+  font-size: 1.1rem;
+}
