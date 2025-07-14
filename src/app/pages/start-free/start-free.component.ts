@@ -71,9 +71,9 @@ export class StartFreeComponent extends BaseComponent implements OnInit {
         this.isError = true;
 
         if (error.error && error.error.message) {
-          this.errorMessage = error.error.message;
+          this.errorMessage = "Oops, falha na comunicação com o servidor. Tente novamente mais tarde.";
         } else if (error.message) {
-          this.errorMessage = error.message;
+          this.errorMessage = "Oops, falha na comunicação com o servidor. Tente novamente mais tarde.";
         } else {
           this.errorMessage = 'Erro interno do servidor. Tente novamente mais tarde.';
         }

@@ -25,6 +25,7 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
   isSubmitting = false;
   showSuccessMessage = false;
   countdown = 10;
+  showTipsModal = false;
 
   private apiUrl = `${environment.urlApi}api/v1/services`;
 
@@ -103,5 +104,13 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/auth']);
+  }
+
+  openTipsModal(): void {
+    this.showTipsModal = true;
+  }
+
+  closeTipsModal(): void {
+    this.showTipsModal = false;
   }
 }

@@ -66,8 +66,16 @@
 
               <!-- Descrição do Negócio -->
               <div class="mb-4">
-                <label for="businessDescription" class="form-label fw-semibold">
-                  <i class="bi bi-card-text me-2"></i>Descrição Completa
+                <label for="businessDescription" class="form-label fw-semibold d-flex align-items-center justify-content-between">
+                  <span>
+                    <i class="bi bi-card-text me-2"></i>Descrição Completa
+                  </span>
+                  <a href="javascript:void(0)" 
+                     class="tips-link text-decoration-none" 
+                     (click)="openTipsModal()"
+                     style="color: #0A7676; font-size: 0.875rem; font-weight: 500;">
+                    <i class="bi bi-lightbulb me-1"></i>dica
+                  </a>
                 </label>
                 <textarea 
                   class="form-control custom-textarea" 
@@ -130,6 +138,56 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
           </small>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Dicas -->
+  <div *ngIf="showTipsModal" class="modal-overlay" (click)="closeTipsModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-lightbulb me-2"></i>
+          Dicas para Descrição do Negócio
+        </h5>
+        <button type="button" class="btn-close" (click)="closeTipsModal()">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="tips-content">
+          <h6 class="tip-title">
+            <i class="bi bi-check-circle me-2"></i>
+            O que incluir na descrição?
+          </h6>
+          <ul class="tips-list">
+            <li><strong>Tipo de negócio:</strong> Restaurante, loja, consultoria, etc.</li>
+            <li><strong>Produtos/Serviços:</strong> O que você oferece especificamente?</li>
+            <li><strong>Diferenciais:</strong> O que te torna único no mercado?</li>
+            <li><strong>Público-alvo:</strong> Quem são seus clientes ideais?</li>
+            <li><strong>Localização e Telefone:</strong> Cidade, bairro ou região de atuação, email, telefone e whatsapp</li>
+            <li><strong>Horários:</strong>Qual o horario e dias de funcionamento?</li>
+            <li><strong>Outros detalhes:</strong>wifi, estacionamento, capacidade de pessoas, atende em domicilio</li>
+          </ul>
+
+          <div class="example-box">
+            <h6 class="example-title">
+              <i class="bi bi-star me-2"></i>
+              Mais dicas
+            </h6>
+            <p class="example-text">
+              "Descreva detalhadamente seu negócio: tipo de serviço, produtos oferecidos, diferenciais, público-alvo, localização, horários de funcionamento, etc.
+Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo original. Quanto mais claro e específico for suas informações, melhor será seus resultados."
+            </p>
+          </div>
+
+          <div class="alert-tip">
+            <i class="bi bi-info-circle me-2"></i>
+            <strong>Importante:</strong> Quanto mais detalhada e específica for sua descrição, 
+            melhor será a configuração do seu chatbot para atender seus clientes!
+          </div>
+        </div>
       </div>
     </div>
   </div>
