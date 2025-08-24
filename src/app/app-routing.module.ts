@@ -5,6 +5,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { FormServiceComponent } from './pages/form-service/form-service.component';
 import { AuthGuard } from './guards/auth.guard';
 import {StartFreeComponent} from "./pages/start-free/start-free.component";
+import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,9 @@ const routes: Routes = [
   },{
     path: 'start-free',
     component: StartFreeComponent
+  },{
+    path: 'spotbot-chat-online',
+    component: SpotbotChatOnlineComponent,
   }
 ];
 

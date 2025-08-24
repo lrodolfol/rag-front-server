@@ -10,6 +10,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './pages/index/index.component';
 import { StartFreeComponent } from './pages/start-free/start-free.component';
+import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { StartFreeComponent } from './pages/start-free/start-free.component';
     AuthComponent,
     FormServiceComponent,
     IndexComponent,
-    StartFreeComponent
+    StartFreeComponent,
+    SpotbotChatOnlineComponent
   ],
   imports: [
     BrowserModule,

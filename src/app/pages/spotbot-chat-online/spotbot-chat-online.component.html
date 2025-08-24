@@ -1,0 +1,57 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <h3>SpotBot Chat</h3>
+    <span class="chat-status">Online</span>
+  </div>
+
+  <div class="chat-messages" #chatContainer>
+    <div *ngFor="let message of messages" 
+         class="message-wrapper" 
+         [ngClass]="{'user-message': message.isUser, 'bot-message': !message.isUser}">
+      <div class="message-bubble">
+        <div class="message-text">{{ message.text }}</div>
+        <div class="message-time">{{ formatTime(message.timestamp) }}</div>
+      </div>
+    </div>
+    
+    <!-- Mensagem de boas-vindas quando não há mensagens -->
+    <div *ngIf="messages.length === 0" class="welcome-message">
+      <div class="welcome-text">
+        <h4>👋 Olá! Eu sou o SpotBot</h4>
+        <p>Como posso ajudar você hoje? Digite sua pergunta abaixo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <div class="input-wrapper">
+      <textarea 
+        [(ngModel)]="currentMessage" 
+        (keydown)="onKeyPress($event)"
+        placeholder="Digite sua mensagem..."
+        class="message-input"
+        rows="1"
+        [disabled]="isLoading">
+      </textarea>
+      
+      <button 
+        (click)="sendMessage()" 
+        class="send-button"
+        [disabled]="!currentMessage.trim() || isLoading">
+        
+        <!-- Loader quando está carregando -->
+        <div *ngIf="isLoading" class="loader"></div>
+        
+        <!-- Ícone do aviãozinho quando não está carregando -->
+        <svg *ngIf="!isLoading" 
+             class="send-icon" 
+             viewBox="0 0 24 24" 
+             fill="none" 
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

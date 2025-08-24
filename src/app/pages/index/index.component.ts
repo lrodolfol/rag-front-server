@@ -37,6 +37,11 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.initializeBootstrap();
   }
 
+  // Navigation methods
+  navigateToSpotbotChat(): void {
+    this.router.navigate(['/spotbot-chat-online']);
+  }
+
   private initializeBootstrap(): void {
     if (typeof (window as any).bootstrap !== 'undefined') {
       console.log('Bootstrap JS carregado com sucesso');
