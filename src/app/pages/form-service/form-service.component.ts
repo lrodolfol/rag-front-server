@@ -59,6 +59,8 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
       'Authorization': `Bearer ${this.authService.getToken()}`
     }
 
+    console.log(this.authService.getToken());
+
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response) => {
         console.log('Resposta da API - ', response);

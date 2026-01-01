@@ -23,6 +23,37 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
+.header-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.home-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.home-button:active {
+  transform: translateY(0);
+}
+
 .chat-header h3 {
   margin: 0;
   font-size: 18px;
@@ -34,6 +65,44 @@
   align-items: center;
   font-size: 12px;
   opacity: 0.9;
+}
+
+.chat-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #0ba3a3;
+  border-radius: 50%;
+  margin-right: 6px;
+  animation: pulse 2s infinite;
+}
+
+.clear-button {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.clear-button:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #098484;
+  color: #098484;
+}
+
+.clear-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.clear-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .chat-status::before {

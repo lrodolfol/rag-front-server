@@ -7,6 +7,34 @@
   background: linear-gradient(135deg, #098484 0%, #098484 100%);
 }
 
+.login-cta {
+  background: white;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(9, 132, 132, 0.15);
+  border: 1px solid rgba(9, 132, 132, 0.18);
+}
+
+.login-cta h4 {
+  font-size: 1.75rem;
+  color: #095a5a;
+}
+
+.login-cta p {
+  font-size: 1.05rem;
+  color: #4b4b4b;
+}
+
+@media (max-width: 767px) {
+  .login-cta {
+    text-align: center;
+  }
+
+  .login-cta .btn {
+    width: 100%;
+  }
+}
+
 .card {
   transition: transform 0.3s ease-in-out;
   border: none;

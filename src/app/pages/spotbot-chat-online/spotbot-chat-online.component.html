@@ -1,6 +1,12 @@
 <div class="chat-container">
   <div class="chat-header">
-    <h3>SpotBot Chat</h3>
+    <div class="header-main">
+      <h3>SpotBot Chat</h3>
+      <button class="home-button" type="button" (click)="goHome()">
+        <i class="bi bi-house-door-fill"></i>
+        <span>Início</span>
+      </button>
+    </div>
     <span class="chat-status">Online</span>
   </div>
 
@@ -33,6 +39,13 @@
         rows="1"
         [disabled]="isLoading">
       </textarea>
+      
+      <button 
+        (click)="clearMessages()" 
+        class="clear-button"
+        [disabled]="messages.length === 0">
+        Limpar chat
+      </button>
       
       <button 
         (click)="sendMessage()" 

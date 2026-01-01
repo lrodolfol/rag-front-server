@@ -66,14 +66,15 @@ export class StartFreeComponent extends BaseComponent implements OnInit {
         this.uniqueCode = response.message;
       },
       error: (error) => {
-        console.error('Erro ao realizar cadastro:', error);
         this.isSubmitting = false;
         this.isError = true;
 
         if (error.error && error.error.message) {
-          this.errorMessage = "Oops, falha na comunicação com o servidor. Tente novamente mais tarde.";
+          console.error('Erro no cadastro - 1 ');
+          this.errorMessage = `Oops, ${error.error.message}.`;
         } else if (error.message) {
-          this.errorMessage = "Oops, falha na comunicação com o servidor. Tente novamente mais tarde.";
+          console.error('Erro no cadastro - 2 ');
+          this.errorMessage = `Oops, Erro interno do servidor. Tente novamente mais tarde`;
         } else {
           this.errorMessage = 'Erro interno do servidor. Tente novamente mais tarde.';
         }
