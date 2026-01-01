@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './pages/index/index.component';
 import { AuthComponent } from './pages/auth/auth.component';
-import { FormServiceComponent } from './pages/form-service/form-service.component';
+import { FormServiceComponent } from './pages/portal/form-service/form-service.component';
 import { AuthGuard } from './guards/auth.guard';
 import {StartFreeComponent} from "./pages/start-free/start-free.component";
 import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';

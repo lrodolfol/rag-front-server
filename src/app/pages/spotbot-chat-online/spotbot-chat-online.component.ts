@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { environment } from '../../../environments/environments';
 
 interface ChatMessage {
@@ -23,7 +24,7 @@ export class SpotbotChatOnlineComponent implements AfterViewChecked {
   private apiUrl = `${environment.urlApi}api/v1/askme-chat-online`;
   private messageIdCounter: number = 1;
 
-  constructor(private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -47,7 +48,6 @@ export class SpotbotChatOnlineComponent implements AfterViewChecked {
     this.currentMessage = '';
     this.isLoading = true;
 
-    // Simula chamada para API (substitua pela sua API real)
     this.callApi(messageToSend).subscribe({
       next: (response) => {
         const botMessage: ChatMessage = {
@@ -59,10 +59,15 @@ export class SpotbotChatOnlineComponent implements AfterViewChecked {
         this.messages.push(botMessage);
         this.isLoading = false;
       },
-      error: (error) => {
+      error: (error: HttpErrorResponse) => {
+        console.error('Erro na API - ', error);
+        const errorText =
+          error.status === 429
+            ? 'Você só pode fazer até 3 requisições por minuto. Aguarde alguns instantes e tente novamente.'
+            : 'Erro ao conectar com a API. Tente novamente.';
         const errorMessage: ChatMessage = {
           id: this.messageIdCounter++,
-          text: 'Erro ao conectar com a API. Tente novamente.',
+          text: errorText,
           isUser: false,
           timestamp: new Date()
         };
@@ -70,6 +75,10 @@ export class SpotbotChatOnlineComponent implements AfterViewChecked {
         this.isLoading = false;
       }
     });
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']);
   }
 
   private callApi(message: string) {
@@ -101,5 +110,10 @@ export class SpotbotChatOnlineComponent implements AfterViewChecked {
       hour: '2-digit', 
       minute: '2-digit' 
     });
+  }
+
+  clearMessages(): void {
+    this.messages = [];
+    this.messageIdCounter = 1;
   }
 }

@@ -11,6 +11,8 @@
 .card {
   border-radius: 15px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -131,4 +133,32 @@
 /* Security indicator */
 .text-muted {
   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.reset-link {
+  color: #098484;
+  font-size: 0.9rem;
+}
+
+.reset-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 13, 28, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  z-index: 10;
+}
+
+.reset-panel {
+  width: min(420px, 92%);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.reset-panel-body {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
 }

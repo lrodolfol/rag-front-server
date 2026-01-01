@@ -87,7 +87,6 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
                   required
                   minlength="10"
                   maxlength="2000"
-                  rows="8"
                   [class.is-invalid]="businessForm.submitted && (!formData.description || formData.description.length < 50)"
                   [class.is-valid]="formData.description && formData.description.length >= 10"
                 ></textarea>

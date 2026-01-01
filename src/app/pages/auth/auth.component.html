@@ -40,6 +40,11 @@
                   [class.is-invalid]="accessCode !== null && accessCode.length > 0 && !isValidFormat()"
                   [class.is-valid]="accessCode !== null && accessCode.length > 0 && isValidFormat()"
                 >
+                <div class="text-end mt-2">
+                  <a class="reset-link text-decoration-none small" href="#" (click)="toggleResetOverlay($event)">
+                    esqueci minha senha
+                  </a>
+                </div>
                 <div class="form-text">
                   <i class="bi bi-info-circle me-1"></i>
                   O código foi disponibilizado por nossa equipe para você
@@ -59,12 +64,77 @@
               </div>
             </form>
 
+            <div class="d-grid gap-2 mb-4">
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-lg"
+                [disabled]="isLoading"
+                (click)="goHome()"
+              >
+                <i class="bi bi-house-door me-2"></i>
+                Voltar para a página inicial
+              </button>
+            </div>
+
             <!-- Help Text -->
             <div class="text-center">
               <small class="text-muted">
                 <i class="bi bi-question-circle me-1"></i>
                 Não possui um código de acesso? Entre em contato com o suporte.
               </small>
+            </div>
+          </div>
+          <div *ngIf="showResetOverlay" class="reset-overlay">
+            <div class="reset-panel card shadow-lg">
+              <div class="reset-panel-body card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="mb-0">Redefinir código de acesso</h5>
+                  <button
+                    type="button"
+                    class="btn btn-close"
+                    aria-label="Fechar"
+                    (click)="toggleResetOverlay()"
+                  ></button>
+                </div>
+                <p class="text-muted small mb-3">
+                  Informe o email usado no cadastro. Enviaremos o novo código.
+                </p>
+                <form (ngSubmit)="sendResetEmail()" #resetForm="ngForm">
+                  <div class="mb-3">
+                    <label for="resetEmail" class="form-label fw-semibold">Email cadastrado</label>
+                    <input
+                      id="resetEmail"
+                      name="resetEmail"
+                      type="email"
+                      class="form-control form-control-lg"
+                      [(ngModel)]="resetEmail"
+                      placeholder="seu@email.com"
+                      required
+                      [class.is-invalid]="resetEmail !== null && resetEmail.length > 0 && !isValidEmail(resetEmail)"
+                    />
+                  </div>
+                  <div *ngIf="resetFeedback" class="alert alert-success py-2 mb-3" role="alert">
+                    {{ resetFeedback }}
+                  </div>
+                  <div class="d-grid gap-2">
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-lg"
+                      [disabled]="resetLoading"
+                    >
+                      <span *ngIf="resetLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                      {{ resetLoading ? 'Enviando...' : 'Enviar novo código' }}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-outline-secondary btn-lg"
+                      (click)="toggleResetOverlay()"
+                    >
+                      Voltar ao login
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>

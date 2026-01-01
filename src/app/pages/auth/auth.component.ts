@@ -17,8 +17,14 @@ export class AuthComponent extends BaseComponent implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
   isLoading: boolean = false;
+  showResetOverlay = false;
+  resetEmail = '';
+  resetLoading = false;
+  resetFeedback = '';
 
   private apiUrl = `${environment.urlApi}api/v1/validate-key`;
+  private apiUrlRecovery = `${environment.urlApi}api/v1/password-recovery`;
+
   private token = '';
 
   constructor(
@@ -45,7 +51,6 @@ export class AuthComponent extends BaseComponent implements OnInit {
     this.isLoading = true;
     this.clearMessages();
 
-    // Simula uma validação no servidor
     setTimeout(() => {
       this.isValidCode(this.accessCode).subscribe(isValid => {
         if (isValid) {
@@ -63,13 +68,52 @@ export class AuthComponent extends BaseComponent implements OnInit {
     }, 1000);
   }
 
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  toggleResetOverlay(event?: Event): void {
+    event?.preventDefault();
+    this.showResetOverlay = !this.showResetOverlay;
+
+    if (this.showResetOverlay) {
+      this.resetFeedback = '';
+      this.resetLoading = false;
+    } else {
+      this.resetEmail = '';
+      this.resetFeedback = '';
+      this.resetLoading = false;
+    }
+  }
+
+  sendResetEmail(): void {
+    if (!this.isValidEmail(this.resetEmail)) {
+      this.resetFeedback = 'Informe um e-mail válido.';
+      return;
+    }
+
+    this.resetLoading = true;
+    this.resetFeedback = '';
+
+    const payload = { email: this.resetEmail };
+    this.http.post(this.apiUrlRecovery, payload).subscribe({
+      next: (response) => {
+        this.resetFeedback = 'Se o e-mail estiver cadastrado, um novo código de acesso foi enviado.';
+        this.resetLoading = false;
+      },
+      error: (error) => {
+        console.error('Erro na API - ', error);
+        this.resetFeedback = 'Erro ao enviar o novo código. Tente novamente.';
+        this.resetLoading = false;
+      }
+    });
+  }
+
   private isValidCode(code: string): Observable<boolean> {
     const payload = { code: code };
 
     return this.http.post<any>(this.apiUrl, payload).pipe(
       map(response => {
-        console.log('Resposta da API - ', response);
-
         if (!response || !response.message) {
           this.showError('Resposta inválida do servidor. Tente novamente.');
           return false;
@@ -97,6 +141,12 @@ export class AuthComponent extends BaseComponent implements OnInit {
     // Valida formato: 6-10 caracteres alfanuméricos
     const regex = /^[a-zA-Z0-9]{8,10}$/;
     return regex.test(this.accessCode);
+  }
+
+  isValidEmail(email: string): boolean {
+    if (!email) return false;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email.trim());
   }
 
   private showError(message: string): void {

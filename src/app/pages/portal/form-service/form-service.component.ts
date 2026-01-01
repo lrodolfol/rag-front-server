@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
-import { BaseComponent } from '../abstract/BaseComponent';
-import { environment } from '../../../environments/environments';
+import { AuthService } from '../../../services/auth.service';
+import { BaseComponent } from '../../abstract/BaseComponent';
+import { environment } from '../../../../environments/environments';
 
 interface FormData {
   title: string;
@@ -58,6 +58,8 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
     const headers = {
       'Authorization': `Bearer ${this.authService.getToken()}`
     }
+
+    console.log(this.authService.getToken());
 
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response) => {
