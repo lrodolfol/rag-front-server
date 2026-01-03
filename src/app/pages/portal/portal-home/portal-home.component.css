@@ -1,0 +1,26 @@
+.portal-home {
+  background: linear-gradient(135deg, #0a6b6b 0%, #062b2b 100%);
+}
+
+.portal-home__shell {
+  padding: 2rem;
+}
+
+.portal-home__card {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  max-width: 900px;
+}
+
+.portal-home__menu {
+  margin-top: 1.5rem;
+}
+
+.portal-home__option {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portal-home__option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}

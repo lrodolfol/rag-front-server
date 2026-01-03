@@ -6,6 +6,7 @@ import { FormServiceComponent } from './pages/portal/form-service/form-service.c
 import { AuthGuard } from './guards/auth.guard';
 import {StartFreeComponent} from "./pages/start-free/start-free.component";
 import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';
+import { PortalHomeComponent } from './pages/portal/portal-home/portal-home.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   }, {
     path: 'auth',
     component: AuthComponent
+  }, {
+    path: 'portal',
+    component: PortalHomeComponent,
+    canActivate: [AuthGuard]
   }, {
     path: 'form-service',
     component: FormServiceComponent,

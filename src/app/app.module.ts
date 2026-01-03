@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormServiceComponent } from './pages/portal/form-service/form-service.component';
 import { AuthComponent } from './pages/auth/auth.component';
+import { PortalHomeComponent } from './pages/portal/portal-home/portal-home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './pages/index/index.component';
 import { StartFreeComponent } from './pages/start-free/start-free.component';
@@ -17,6 +18,7 @@ import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-
     AppComponent,
     AuthComponent,
     FormServiceComponent,
+    PortalHomeComponent,
     IndexComponent,
     StartFreeComponent,
     SpotbotChatOnlineComponent

@@ -36,9 +36,8 @@ export class AuthComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Se o usuário já estiver autenticado, redireciona para form-service
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/form-service']);
+      this.router.navigate(['/portal']);
     }
   }
 
@@ -58,7 +57,7 @@ export class AuthComponent extends BaseComponent implements OnInit {
           this.authService.login(this.token);
           this.showSuccess('Código válido! Redirecionando...');
           setTimeout(() => {
-            this.router.navigate(['/form-service']);
+            this.router.navigate(['/portal']);
           }, 1500);
         } else {
           this.showError('Código de acesso inválido. Tente novamente.');

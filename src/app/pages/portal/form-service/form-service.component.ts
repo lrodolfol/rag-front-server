@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../../services/auth.service';
-import { BaseComponent } from '../../abstract/BaseComponent';
-import { environment } from '../../../../environments/environments';
+import { BasePortalComponent } from '../abstract';
 
 interface FormData {
   title: string;
@@ -15,7 +14,15 @@ interface FormData {
   templateUrl: './form-service.component.html',
   styleUrls: ['./form-service.component.css']
 })
-export class FormServiceComponent extends BaseComponent implements OnInit {
+export class FormServiceComponent extends BasePortalComponent implements OnInit {
+
+  constructor(
+    protected override authService: AuthService,
+    protected override router: Router,
+    protected override http: HttpClient
+  ) {
+    super(authService, router, http);
+  }
 
   formData: FormData = {
     title: '',
@@ -27,20 +34,32 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
   countdown = 10;
   showTipsModal = false;
 
-  private apiUrl = `${environment.urlApi}api/v1/services`;
-
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
-  ) {
-    super();
-  }
+  private apiUrl =  `${this.apiAddress}/services`;
+  private getUserData = `${this.apiAddress}/user`;
 
   ngOnInit(): void {
     if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/auth']);
     }
+
+    this.getUserDataIfLogged();
+  }
+
+  getUserDataIfLogged(): void {
+    const headers = {
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    }
+
+    this.http.get(this.getUserData, { headers }).subscribe({
+      next: (response) => {
+        console.log('Dados do usuário - ', response);
+      },
+      error: (error) => {
+        console.error('Erro ao obter dados do usuário - ', error);
+        this.logout();
+        this.router.navigate(['/auth']);
+      }
+    });
   }
 
   submitForm(): void {
@@ -58,8 +77,6 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
     const headers = {
       'Authorization': `Bearer ${this.authService.getToken()}`
     }
-
-    console.log(this.authService.getToken());
 
     this.http.post(this.apiUrl, payload, { headers }).subscribe({
       next: (response) => {
@@ -101,11 +118,6 @@ export class FormServiceComponent extends BaseComponent implements OnInit {
       title: '',
       description: ''
     };
-  }
-
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/auth']);
   }
 
   openTipsModal(): void {
