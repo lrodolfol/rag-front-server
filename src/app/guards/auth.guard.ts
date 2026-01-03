@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
         if (isAuthenticated) {
             return true;
         } else {
-            // Redireciona para a tela de auth se não estiver autenticado
+            console.warn('Acesso negado. Usuário não autenticado.');
             this.router.navigate(['/auth']);
             return false;
         }

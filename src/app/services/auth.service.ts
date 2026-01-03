@@ -9,7 +9,7 @@ export class AuthService {
 
     constructor() {
         // Verifica se existe uma sessão salva no localStorage
-        this.authenticated = localStorage.getItem(this.AUTH_KEY) === 'true';
+        this.authenticated = !!localStorage.getItem(this.AUTH_KEY);
     }
 
     /**
@@ -17,7 +17,7 @@ export class AuthService {
      */
     login(token: string): void {
         this.authenticated = true;
-        localStorage.setItem(this.AUTH_KEY, token,);
+        localStorage.setItem(this.AUTH_KEY, token);
     }
 
     /**
@@ -43,9 +43,6 @@ export class AuthService {
     }
 
     getToken(): string {
-        if(this.authenticated = true){
-            return localStorage.getItem(this.AUTH_KEY) || '';
-        }
-        return '';
-    }
+    return localStorage.getItem(this.AUTH_KEY) || '';
+  }
 }
