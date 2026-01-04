@@ -52,12 +52,14 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
 
     this.http.get(this.getUserData, { headers }).subscribe({
       next: (response) => {
-        console.log('Dados do usuário - ', response);
+        let company = response && (response as any).company;
+        let description = response && (response as any).description;
+
+        this.formData.title = company;
+        this.formData.description = description;
       },
       error: (error) => {
         console.error('Erro ao obter dados do usuário - ', error);
-        this.logout();
-        this.router.navigate(['/auth']);
       }
     });
   }
