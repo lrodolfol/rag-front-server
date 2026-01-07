@@ -1,0 +1,138 @@
+<div class="portal-credit-card">
+  <div class="portal-credit-card__shell container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="portal-credit-card__card card shadow-lg border-0">
+      <div class="card-body p-4 p-md-5">
+        <div class="text-center mb-4">
+          <p class="text-muted small mb-1">Portal do Cliente</p>
+          <h1 class="display-6 fw-bold mb-2">Atualize o cartão</h1>
+          <p class="text-muted mb-0">Envie seus dados para autorizar pagamentos recorrentes.</p>
+        </div>
+
+        <form (ngSubmit)="submitPayment()" [class.was-validated]="formSubmitted" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold text-uppercase small mb-1" for="cardHolder">Nome do titular</label>
+              <input
+                id="cardHolder"
+                name="cardHolder"
+                class="form-control border-0 shadow-sm"
+                type="text"
+                required
+                autocomplete="cc-name"
+                placeholder="Como aparece no cartão"
+                [(ngModel)]="paymentData.cardHolder"
+                [disabled]="isSubmitting"
+                [class.is-invalid]="formSubmitted && !paymentData.cardHolder.trim()"
+              />
+              <div class="invalid-feedback">Informe o nome que está impresso no cartão.</div>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold text-uppercase small mb-1" for="cardNumber">Número do cartão</label>
+              <input
+                id="cardNumber"
+                name="cardNumber"
+                class="form-control border-0 shadow-sm"
+                type="text"
+                maxlength="19"
+                inputmode="numeric"
+                required
+                placeholder="•••• •••• •••• ••••"
+                [(ngModel)]="paymentData.cardNumber"
+                (input)="onCardNumberInput($event)"
+                [disabled]="isSubmitting"
+                [class.is-invalid]="formSubmitted && !isCardNumberValid()"
+              />
+              <div class="invalid-feedback">Digite um número válido (12 a 16 dígitos).</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-uppercase small mb-1" for="expiration">Validade (MM/AA)</label>
+              <input
+                id="expiration"
+                name="expiration"
+                class="form-control border-0 shadow-sm"
+                type="text"
+                maxlength="5"
+                inputmode="numeric"
+                required
+                placeholder="MM/AA"
+                [(ngModel)]="paymentData.expiration"
+                (input)="onExpirationInput($event)"
+                [disabled]="isSubmitting"
+                [class.is-invalid]="formSubmitted && !isExpirationValid()"
+              />
+              <div class="invalid-feedback">Use o formato MM/AA.</div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold text-uppercase small mb-1" for="cvv">CVV</label>
+              <input
+                id="cvv"
+                name="cvv"
+                class="form-control border-0 shadow-sm"
+                type="password"
+                inputmode="numeric"
+                maxlength="4"
+                required
+                placeholder="•••"
+                [(ngModel)]="paymentData.cvv"
+                [disabled]="isSubmitting"
+                [class.is-invalid]="formSubmitted && !isCvvValid()"
+              />
+              <div class="invalid-feedback">Informe os 3 ou 4 dígitos do verso do cartão.</div>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label fw-semibold text-uppercase small mb-1" for="amount">Valor autorizado</label>
+              <div class="input-group">
+                <span class="input-group-text border-0 bg-white">R$</span>
+                <input
+                  id="amount"
+                  name="amount"
+                  class="form-control border-0 shadow-sm"
+                  type="number"
+                  inputmode="decimal"
+                  min="1"
+                  step="0.01"
+                  required
+                  placeholder="0,00"
+                  [(ngModel)]="paymentData.amount"
+                  [disabled]="isSubmitting"
+                [class.is-invalid]="formSubmitted && !isAmountValid()"
+                />
+              </div>
+              <div class="invalid-feedback">Informe o valor que deseja autorizar.</div>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <button
+              type="submit"
+              class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2"
+              [disabled]="isSubmitting"
+            >
+              <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              {{ isSubmitting ? 'Processando...' : 'Enviar dados' }}
+            </button>
+          </div>
+        </form>
+
+        <div
+          *ngIf="submissionStatus"
+          class="alert mt-4 mb-0"
+          [ngClass]="{
+            'alert-success': submissionStatus === 'success',
+            'alert-danger': submissionStatus === 'error'
+          }"
+          role="status"
+          aria-live="polite"
+        >
+          <strong *ngIf="submissionStatus === 'success'">Sucesso! </strong>
+          <strong *ngIf="submissionStatus === 'error'">Erro! </strong>
+          {{ submissionMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
