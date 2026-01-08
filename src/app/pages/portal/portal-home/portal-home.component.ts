@@ -29,12 +29,6 @@ export class PortalHomeComponent extends BaseComponent {
       route: '/form-service'
     },
     {
-      title: 'Atualizar cartão de crédito',
-      description: 'Envie um novo cartão para habilitar cobranças recorrentes da sua assinatura.',
-      icon: 'bi-credit-card-2-front-fill',
-      route: '/portal/credit-card'
-    },
-    {
       title: 'Ser premium',
       description: 'Ative recursos avançados, acompanhe relatórios priorizados e receba atendimento personalizado.',
       icon: 'bi-star-fill',

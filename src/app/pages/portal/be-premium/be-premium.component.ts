@@ -9,23 +9,21 @@ interface PaymentData {
   cardNumber: string;
   expiration: string;
   cvv: string;
-  amount: number | null;
 }
 
 type SubmissionStatus = 'success' | 'error' | '';
 
 @Component({
   selector: 'app-portal-credit-card',
-  templateUrl: './portal-credit-card.component.html',
-  styleUrls: ['./portal-credit-card.component.css']
+  templateUrl: './be-premium.component.html',
+  styleUrls: ['./be-premium.component.css']
 })
-export class PortalCreditCardComponent extends BasePortalComponent {
+export class BePremiumComponent extends BasePortalComponent {
   paymentData: PaymentData = {
     cardHolder: '',
     cardNumber: '',
     expiration: '',
-    cvv: '',
-    amount: null
+    cvv: ''
   };
 
   submissionStatus: SubmissionStatus = '';
@@ -56,8 +54,7 @@ export class PortalCreditCardComponent extends BasePortalComponent {
       cardHolderName: this.paymentData.cardHolder.trim(),
       cardNumber: (this.paymentData.cardNumber || '').replace(/\D/g, ''),
       expiration: this.paymentData.expiration.trim(),
-      cvv: this.paymentData.cvv.trim(),
-      amount: Number(this.paymentData.amount)
+      cvv: this.paymentData.cvv.trim()
     };
 
     const headers = {
@@ -106,14 +103,12 @@ export class PortalCreditCardComponent extends BasePortalComponent {
     const holderValid = !!this.paymentData.cardHolder.trim();
     const expirationValid = this.isExpirationValid();
     const cvvValid = this.isCvvValid();
-    const amountValid = this.isAmountValid();
 
     return (
       holderValid &&
       this.isCardNumberValid() &&
       expirationValid &&
-      cvvValid &&
-      amountValid
+      cvvValid
     );
   }
 
@@ -130,17 +125,12 @@ export class PortalCreditCardComponent extends BasePortalComponent {
     return /^[0-9]{3,4}$/.test(this.paymentData.cvv.trim());
   }
 
-  isAmountValid(): boolean {
-    return !!(this.paymentData.amount && this.paymentData.amount > 0);
-  }
-
   private resetForm(): void {
     this.paymentData = {
       cardHolder: '',
       cardNumber: '',
       expiration: '',
-      cvv: '',
-      amount: null
+      cvv: ''
     };
   }
 }

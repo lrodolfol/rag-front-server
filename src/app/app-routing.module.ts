@@ -7,7 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import {StartFreeComponent} from "./pages/start-free/start-free.component";
 import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';
 import { PortalHomeComponent } from './pages/portal/portal-home/portal-home.component';
-import { PortalCreditCardComponent } from './pages/portal/credit-card/portal-credit-card.component';
+import { BePremiumComponent } from './pages/portal/be-premium/be-premium.component';
 
 const routes: Routes = [
   {
@@ -28,8 +28,8 @@ const routes: Routes = [
     component: FormServiceComponent,
     canActivate: [AuthGuard]
   }, {
-    path: 'portal/credit-card',
-    component: PortalCreditCardComponent,
+    path: 'be-premium',
+    component: BePremiumComponent,
     canActivate: [AuthGuard]
   },{
     path: 'start-free',

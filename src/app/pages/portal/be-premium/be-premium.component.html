@@ -3,9 +3,8 @@
     <div class="portal-credit-card__card card shadow-lg border-0">
       <div class="card-body p-4 p-md-5">
         <div class="text-center mb-4">
-          <p class="text-muted small mb-1">Portal do Cliente</p>
-          <h1 class="display-6 fw-bold mb-2">Atualize o cartão</h1>
-          <p class="text-muted mb-0">Envie seus dados para autorizar pagamentos recorrentes.</p>
+          <h1 class="display-6 fw-bold mb-2">Seja premium</h1>
+          <p class="text-muted mb-0">Continue usando nossos serviços e aproveite benefícios exclusivos.</p>
         </div>
 
         <form (ngSubmit)="submitPayment()" [class.was-validated]="formSubmitted" novalidate>
@@ -82,28 +81,6 @@
               />
               <div class="invalid-feedback">Informe os 3 ou 4 dígitos do verso do cartão.</div>
             </div>
-
-            <div class="col-12">
-              <label class="form-label fw-semibold text-uppercase small mb-1" for="amount">Valor autorizado</label>
-              <div class="input-group">
-                <span class="input-group-text border-0 bg-white">R$</span>
-                <input
-                  id="amount"
-                  name="amount"
-                  class="form-control border-0 shadow-sm"
-                  type="number"
-                  inputmode="decimal"
-                  min="1"
-                  step="0.01"
-                  required
-                  placeholder="0,00"
-                  [(ngModel)]="paymentData.amount"
-                  [disabled]="isSubmitting"
-                [class.is-invalid]="formSubmitted && !isAmountValid()"
-                />
-              </div>
-              <div class="invalid-feedback">Informe o valor que deseja autorizar.</div>
-            </div>
           </div>
 
           <div class="mt-4">
@@ -132,6 +109,9 @@
           <strong *ngIf="submissionStatus === 'error'">Erro! </strong>
           {{ submissionMessage }}
         </div>
+        <p class="text-center text-muted small mt-3">
+          Não armazenamos dados sigilosos do cliente; todos os demais dados estão totalmente seguros.
+        </p>
       </div>
     </div>
   </div>
