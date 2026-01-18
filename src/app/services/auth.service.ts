@@ -32,7 +32,45 @@ export class AuthService {
      * Verifica se o usuário está autenticado
      */
     isAuthenticated(): boolean {
-        return this.authenticated;
+        const token = this.getToken();
+        if (!token) {
+            this.authenticated = false;
+            return false;
+        }
+
+        if (this.isTokenExpired(token)) {
+            this.logout();
+            return false;
+        }
+
+        this.authenticated = true;
+        return true;
+    }
+
+    private isTokenExpired(token: string): boolean {
+        const payload = this.decodeToken(token);
+        if (!payload || typeof payload['exp'] !== 'number') {
+            return false;
+        }
+
+        return Date.now() >= payload['exp'] * 1000;
+    }
+
+    private decodeToken(token: string): Record<string, unknown> | null {
+        const parts = token.split('.');
+        if (parts.length < 2) {
+            return null;
+        }
+
+        try {
+            const base64 = parts[1]
+                .replace(/-/g, '+')
+                .replace(/_/g, '/');
+            const decoded = atob(base64);
+            return JSON.parse(decodeURIComponent(escape(decoded)));
+        } catch {
+            return null;
+        }
     }
 
     /**
@@ -43,6 +81,6 @@ export class AuthService {
     }
 
     getToken(): string {
-    return localStorage.getItem(this.AUTH_KEY) || '';
-  }
+        return localStorage.getItem(this.AUTH_KEY) || '';
+    }
 }
