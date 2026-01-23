@@ -43,7 +43,7 @@ export class AuthComponent extends BaseComponent implements OnInit {
 
   validateCode(): void {
     if (!this.accessCode || this.accessCode.length < 8) {
-      this.showError('Código deve conter pelo menos 8 caracteres');
+      this.showError('Código inválido.');
       return;
     }
 
@@ -59,8 +59,6 @@ export class AuthComponent extends BaseComponent implements OnInit {
           setTimeout(() => {
             this.router.navigate(['/portal']);
           }, 1500);
-        } else {
-          this.showError('Código de acesso inválido. Tente novamente.');
         }
       });
       this.isLoading = false;
@@ -127,8 +125,7 @@ export class AuthComponent extends BaseComponent implements OnInit {
         return true;
       }),
       catchError(error => {
-        console.error('Erro na API - ', error);
-        this.showError('Erro ao acessar o servidor.');
+        this.showError('Houve um erro ao processar sua solicitação. Tente novamente.');
         return of(false);
       })
     );
