@@ -9,6 +9,7 @@ import { FormServiceComponent } from './pages/portal/form-service/form-service.c
 import { AuthComponent } from './pages/auth/auth.component';
 import { PortalHomeComponent } from './pages/portal/portal-home/portal-home.component';
 import { BePremiumComponent } from './pages/portal/be-premium/be-premium.component';
+import { AccountDeletionConfirmationComponent } from './pages/portal/account-deletion-confirmation/account-deletion-confirmation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent } from './pages/index/index.component';
 import { StartFreeComponent } from './pages/start-free/start-free.component';
@@ -21,6 +22,7 @@ import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-
     FormServiceComponent,
     PortalHomeComponent,
     BePremiumComponent,
+    AccountDeletionConfirmationComponent,
     IndexComponent,
     StartFreeComponent,
     SpotbotChatOnlineComponent

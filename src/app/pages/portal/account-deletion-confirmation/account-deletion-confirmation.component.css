@@ -1,0 +1,49 @@
+.account-deletion {
+  background: linear-gradient(135deg, #042d2d 0%, #081519 100%);
+}
+
+.account-deletion__shell {
+  padding: 2.5rem 1rem 3rem;
+}
+
+.account-deletion__card {
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.96);
+  max-width: 780px;
+}
+
+.account-deletion__header p {
+  line-height: 1.4;
+}
+
+.account-deletion__notice {
+  border-radius: 16px;
+  font-weight: 600;
+}
+
+.account-deletion__detail-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.85);
+  color: #0f4f4f;
+}
+
+.account-deletion__detail-icon i {
+  font-size: 1.2rem;
+}
+
+.account-deletion__detail p {
+  margin-bottom: 0;
+}
+
+.account-deletion__actions button {
+  border-radius: 12px;
+}
+
+.account-deletion__actions .btn-outline-light {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.account-deletion__response {
+  border-radius: 18px;
+}

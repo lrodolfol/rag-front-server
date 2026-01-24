@@ -8,6 +8,7 @@ import {StartFreeComponent} from "./pages/start-free/start-free.component";
 import { SpotbotChatOnlineComponent } from './pages/spotbot-chat-online/spotbot-chat-online.component';
 import { PortalHomeComponent } from './pages/portal/portal-home/portal-home.component';
 import { BePremiumComponent } from './pages/portal/be-premium/be-premium.component';
+import { AccountDeletionConfirmationComponent } from './pages/portal/account-deletion-confirmation/account-deletion-confirmation.component';
 
 const routes: Routes = [
   {
@@ -31,10 +32,14 @@ const routes: Routes = [
     path: 'be-premium',
     component: BePremiumComponent,
     canActivate: [AuthGuard]
-  },{
+  }, {
+    path: 'account-deletion-confirmation',
+    component: AccountDeletionConfirmationComponent,
+    canActivate: [AuthGuard]
+  }, {
     path: 'start-free',
     component: StartFreeComponent
-  },{
+  }, {
     path: 'spotbot-chat-online',
     component: SpotbotChatOnlineComponent,
   }
