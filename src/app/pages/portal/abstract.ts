@@ -10,11 +10,32 @@ export class BasePortalComponent {
         protected authService: AuthService,
         protected router: Router,
         protected http: HttpClient
-    ) {}
+    ) {
+        this.validateTokenApi();
+    }
 
     logout(): void {
         this.authService.logout();
         this.router.navigate(['/auth']);
     }
 
+    validateTokenApi(): void {
+        const token = this.authService.getToken();
+        if (!token) {
+            this.logout();
+            return;
+        }
+        
+        const headers = {
+            'Authorization': `Bearer ${token}`
+        };
+
+        this.http.get(`${this.apiAddress}/validate-token`, { headers }).subscribe({
+            next: () => {
+            },
+            error: () => {
+                this.logout();
+            }
+        });
+    }
 }

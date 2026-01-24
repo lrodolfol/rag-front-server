@@ -36,10 +36,13 @@ export class AccountDeletionConfirmationComponent extends BasePortalComponent im
     }
   ];
 
-  private apiUrl = `${environment.urlApi}api/v1/user_cancelled_account`;
+  private apiUrl = `${environment.urlApi}api/v1/user-cancelled-account`;
 
   isSubmitting = false;
   alertMessage: string | null = null;
+  alertType: 'success' | 'danger' | null = null;
+  private redirectCountdown = 3;
+  private redirectTimer: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     protected override authService: AuthService,
@@ -55,32 +58,69 @@ export class AccountDeletionConfirmationComponent extends BasePortalComponent im
     }
   }
 
-  confirmDeletion(): Observable<boolean> {
+  confirmDeletion(): void {
     // if (this.isSubmitting) {
     //   return;
     // }
     this.isSubmitting = true;
     this.alertMessage = null;
-    console.log(this.apiUrl);
-    return this.http.post<any>(this.apiUrl, "").pipe(
-      map(response => {
-        console.log('Resposta da API - ', response);
-        if (!response || !response.message) {
-          this.alertMessage = 'Sua conta foi excluida e todos os dados foram removidos. Obrigado por ter usado nossa plataforma.';
-          return false;
-        }
 
-        return true;
-      }),
-      catchError(error => {
-        console.error('Erro na API - ', error);
-        this.alertMessage = 'Houve um erro ao processar sua solicitação. Tente novamente.';
-        return of(false);
-      })
-    );
+    const headers = {
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    }
+
+    this.http.post<any>(this.apiUrl, "", { headers }).subscribe({
+      next: (response) => {
+        this.alertMessage = 'Sua conta foi excluída com sucesso. Obrigado por ter usado nossa plataforma.';
+        this.alertType = 'success';
+        this.isSubmitting = false;
+        this.authService.logout();
+        this.startRedirectCountdown();
+      },
+      error: (error) => {
+        this.isSubmitting = false;
+        this.alertType = 'danger';
+
+        if (error.error && error.error.message) {
+          this.alertMessage = `Oops, ${error.error.message}.`;
+        } else if (error.message) {
+          this.alertMessage = `Oops, Erro interno do servidor. Tente novamente mais tarde`;
+        } else {
+          this.alertMessage = 'Erro interno do servidor. Tente novamente mais tarde.';
+        }
+      }
+    });
   }
 
   continueWithAccount(): void {
     this.router.navigate(['/portal']);
+  }
+
+  get alertClass(): string {
+    return this.alertType ? `alert alert-${this.alertType}` : 'alert alert-info';
+  }
+
+  private startRedirectCountdown(): void {
+    if (this.redirectTimer) {
+      clearInterval(this.redirectTimer);
+    }
+
+    this.redirectCountdown = 3;
+    this.updateRedirectMessage();
+    this.redirectTimer = setInterval(() => {
+      this.redirectCountdown -= 1;
+
+      if (this.redirectCountdown <= 0) {
+        clearInterval(this.redirectTimer as ReturnType<typeof setInterval>);
+        this.router.navigate(['/']);
+        return;
+      }
+
+      this.updateRedirectMessage();
+    }, 1000);
+  }
+
+  private updateRedirectMessage(): void {
+    this.alertMessage = `Sua conta foi excluída com sucesso. Você será redirecionado em ${this.redirectCountdown} segundos.`;
   }
 }

@@ -59,7 +59,11 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
         this.formData.description = description;
       },
       error: (error) => {
-        console.error('Erro ao obter dados do usuário - ', error);
+        if(error.status === 401) {
+          this.logout();
+          this.router.navigate(['/auth']);
+          return;
+        }
       }
     });
   }

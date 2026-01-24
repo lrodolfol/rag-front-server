@@ -49,10 +49,15 @@ export class AuthService {
 
     private isTokenExpired(token: string): boolean {
         const payload = this.decodeToken(token);
+        
+        if(!payload){
+            return true;
+        }
+
         if (!payload || typeof payload['exp'] !== 'number') {
             return false;
         }
-
+        
         return Date.now() >= payload['exp'] * 1000;
     }
 

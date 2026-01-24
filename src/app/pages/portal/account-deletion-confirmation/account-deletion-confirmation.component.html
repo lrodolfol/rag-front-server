@@ -57,7 +57,8 @@
 
         <div
           *ngIf="alertMessage"
-          class="account-deletion__response mt-3 alert alert-success d-flex align-items-center gap-2"
+          class="account-deletion__response mt-3 d-flex align-items-center gap-2"
+          [ngClass]="alertClass"
         >
           <i class="bi bi-check-circle-fill fs-5"></i>
           <span class="mb-0">{{ alertMessage }}</span>
