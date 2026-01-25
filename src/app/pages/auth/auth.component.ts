@@ -99,8 +99,7 @@ export class AuthComponent extends BaseComponent implements OnInit {
         this.resetLoading = false;
       },
       error: (error) => {
-        console.error('Erro na API - ', error);
-        this.resetFeedback = 'Erro ao enviar o novo código. Tente novamente.';
+        this.resetFeedback = 'Se o e-mail estiver cadastrado, um novo código de acesso foi enviado.';
         this.resetLoading = false;
       }
     });
