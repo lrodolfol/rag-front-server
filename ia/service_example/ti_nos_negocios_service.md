@@ -1,0 +1,28 @@
+TI NOS NEGOCIOS
+
+  - Nome: TI NOS NEGOCIOS
+  - Setor: Consultoria em Inovacao e Operacoes Digitais
+  - Publico-alvo: Pequenas e medias empresas de varejo e prestadores de servicos locais
+
+  **Servicos e Propostas de Valor**
+  1. **Diagnostico de Processos Comerciais** - mapeamento rapido para identificar gargalos em vendas, estoque e atendimento.
+  2. **Implantacao de Automacao Comercial** - integracao de ERPs, CRM e canais digitais com foco em eficiencia e visibilidade.
+  3. **Desk de Inovacao e Mentoria Executiva** - acompanhamento semanal com o Rodolfo para definir estrategias de crescimento.
+  4. **Suporte Humanizado** - atendimento via WhatsApp e portal com resposta em ate 2 horas uteis.
+
+  **Casos de Uso e Beneficios Esperados**
+  - Reducao de 28% no tempo de fechamento de pedidos apos implementacao de fluxos automatizados e alertas proativos.
+  - Aumento de 23% na retencao de clientes com campanhas personalizadas construidas sobre insights extraidos pelo time de RAG.
+
+  **Logistica de Atendimento**
+  - Canais: WhatsApp Business, portal exclusivo e consultorias por video chamada.
+  - SLA: respostas em ate 2 horas uteis durante o expediente.
+  - Endereco: Rua da inovacao, 45 - Curitiba, PR - 80045-120
+  - Telefone e WhatsApp: +55 (41) 3000-2020
+  - Email: contato@tinosnegocios.com.br
+  - Website: www.tinosnegocios.com.br
+  - Horario de Atendimento: Segunda a Sexta, 8h as 19h
+  - Redes Sociais: LinkedIn, Instagram (@tinosnegocios)
+
+  **Dono**
+  Rodolfo Silva
