@@ -133,4 +133,8 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   closeTipsModal(): void {
     this.showTipsModal = false;
   }
+
+  goToMenu(): void {
+    this.router.navigate(['/portal']);
+  }
 }
