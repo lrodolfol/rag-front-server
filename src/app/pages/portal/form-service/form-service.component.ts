@@ -139,6 +139,6 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   }
 
   goToMenu(): void {
-    this.router.navigate(['/portalych']);
+    this.router.navigate(['/portal']);
   }
 }
