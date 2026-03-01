@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { BaseComponent } from '../../abstract/BaseComponent';
 import { Router } from '@angular/router';
+import { BasePortalComponent } from '../abstract';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface PortalOption {
   title: string;
@@ -14,11 +17,13 @@ interface PortalOption {
   templateUrl: './portal-home.component.html',
   styleUrls: ['./portal-home.component.css']
 })
-export class PortalHomeComponent extends BaseComponent {
+export class PortalHomeComponent extends BasePortalComponent {
   constructor(
-    private router: Router
+    protected override authService: AuthService,
+    protected override router: Router,
+    protected override http: HttpClient
   ) {
-    super();
+    super(authService, router, http);
   }
 
   menuOptions: PortalOption[] = [

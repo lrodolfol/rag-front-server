@@ -2,7 +2,7 @@
   <div class="container-fluid min-vh-100 py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-6">
-        
+
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
           <div>
@@ -13,9 +13,6 @@
             <button class="btn btn-outline-primary" (click)="goToMenu()">
               <i class="bi bi-house-door me-2"></i>Menu
             </button>
-            <button class="btn btn-outline-secondary" (click)="logout()">
-              <i class="bi bi-box-arrow-right me-2"></i>Sair
-            </button>
           </div>
         </div>
 
@@ -25,7 +22,19 @@
             <i class="bi bi-check-circle-fill me-3 fs-3"></i>
             <div>
               <h6 class="mb-1">Formulário enviado com sucesso!</h6>
-              <p class="mb-0">Obrigado por compartilhar informações sobre seu negócio. Você será redirecionado em {{ countdown }} segundos...</p>
+              <p class="mb-0">Obrigado por compartilhar informações sobre seu negócio. Você será redirecionado em {{
+                countdown }} segundos...</p>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="showErrorMessage" class="alert alert-danger fade show" role="alert">
+          <div class="d-flex align-items-center">
+            <div>
+              <h6 class="mb-1">Usuário não autenticado ou proibido</h6>
+              <p class="mb-0">Você será redirecionado em {{
+                countdown }} segundos...</p>
             </div>
           </div>
         </div>
@@ -35,34 +44,27 @@
           <div class="card-header bg-primary text-white">
             <h5 class="card-title mb-0">
               <i class="bi bi-building me-2"></i>
-              Informações do seu Negócio - 
+              Informações do seu Negócio -
               <span *ngIf="isLoading" class="placeholder-glow">Carregando...</span>
               <span *ngIf="!isLoading" class="fw-bold">{{formData.title}}</span>
             </h5>
           </div>
-          
+
           <div class="card-body p-4">
             <form (ngSubmit)="submitForm()" #businessForm="ngForm">
-              
+
               <!-- Título do Negócio -->
               <div class="mb-4">
                 <label for="businessTitle" class="form-label fw-semibold">
                   <i class="bi bi-shop me-2"></i>Nome do seu Negócio/Serviço
                 </label>
-                <input *ngIf="isLoading" type="text" class="form-control form-control-lg custom-input placeholder-glow" id="businessTitle" name="businessTitle" placeholder="carregando seus dados..." disabled>              
-                <input *ngIf="!isLoading"
-                  type="text" 
-                  class="form-control form-control-lg custom-input" 
-                  id="businessTitle"
-                  name="businessTitle"
-                  [(ngModel)]="formData.title"
-                  placeholder="Ex: Restaurante Sabor Brasil, Consultoria Digital..."
-                  required
-                  minlength="3"
-                  maxlength="100"
-                  [class.is-invalid]="businessForm.submitted && !formData.title"
-                  [class.is-valid]="formData.title && formData.title.length >= 3"
-                >
+                <input *ngIf="isLoading" type="text" class="form-control form-control-lg custom-input placeholder-glow"
+                  id="businessTitle" name="businessTitle" placeholder="carregando seus dados..." disabled>
+                <input *ngIf="!isLoading" type="text" class="form-control form-control-lg custom-input"
+                  id="businessTitle" name="businessTitle" [(ngModel)]="formData.title"
+                  placeholder="Ex: Restaurante Sabor Brasil, Consultoria Digital..." required minlength="3"
+                  maxlength="100" [class.is-invalid]="businessForm.submitted && !formData.title"
+                  [class.is-valid]="formData.title && formData.title.length >= 3">
                 <div class="invalid-feedback">
                   Por favor, informe o nome do seu negócio (mínimo 3 caracteres).
                 </div>
@@ -74,31 +76,26 @@
 
               <!-- Descrição do Negócio -->
               <div class="mb-4">
-                <label for="businessDescription" class="form-label fw-semibold d-flex align-items-center justify-content-between">
+                <label for="businessDescription"
+                  class="form-label fw-semibold d-flex align-items-center justify-content-between">
                   <span>
                     <i class="bi bi-card-text me-2"></i>Descrição Completa
                   </span>
-                  <a href="javascript:void(0)" 
-                     class="tips-link text-decoration-none" 
-                     (click)="openTipsModal()"
-                     style="color: #0A7676; font-size: 0.875rem; font-weight: 500;">
+                  <a href="javascript:void(0)" class="tips-link text-decoration-none" (click)="openTipsModal()"
+                    style="color: #0A7676; font-size: 0.875rem; font-weight: 500;">
                     <i class="bi bi-lightbulb me-1"></i>dica
                   </a>
                 </label>
-                <textarea *ngIf="isLoading" class="form-control custom-textarea placeholder-glow" id="businessDescription" name="businessDescription" placeholder="carregando seus dados..." disabled></textarea>
-                <textarea *ngIf="!isLoading"
-                  class="form-control custom-textarea" 
-                  id="businessDescription"
-                  name="businessDescription"
-                  [(ngModel)]="formData.description"
+                <textarea *ngIf="isLoading" class="form-control custom-textarea placeholder-glow"
+                  id="businessDescription" name="businessDescription" placeholder="carregando seus dados..."
+                  disabled></textarea>
+                <textarea *ngIf="!isLoading" class="form-control custom-textarea" id="businessDescription"
+                  name="businessDescription" [(ngModel)]="formData.description"
                   placeholder="Descreva detalhadamente seu negócio: tipo de serviço, produtos oferecidos, diferenciais, público-alvo, localização, horários de funcionamento, etc.
-Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo original. Quanto mais claro e específico for suas informações, melhor será seus resultados."
-                  required
-                  minlength="10"
-                  maxlength="2000"
+Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo original. Quanto mais claro e específico for suas informações, melhor será seus resultados." required
+                  minlength="10" maxlength="2000"
                   [class.is-invalid]="businessForm.submitted && (!formData.description || formData.description.length < 50)"
-                  [class.is-valid]="formData.description && formData.description.length >= 10"
-                ></textarea>
+                  [class.is-valid]="formData.description && formData.description.length >= 10"></textarea>
                 <div class="invalid-feedback">
                   Por favor, forneça uma descrição detalhada (mínimo 10 caracteres).
                 </div>
@@ -115,20 +112,13 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
 
               <!-- Botões -->
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button 
-                  type="button" 
-                  class="btn btn-outline-secondary btn-lg me-md-2"
-                  (click)="clearForm()"
-                  [disabled]="isSubmitting"
-                >
+                <button type="button" class="btn btn-outline-secondary btn-lg me-md-2" (click)="clearForm()"
+                  [disabled]="isSubmitting">
                   <i class="bi bi-arrow-clockwise me-2"></i>
                   Limpar
                 </button>
-                <button 
-                  type="submit" 
-                  class="btn btn-primary btn-lg custom-submit-btn"
-                  [disabled]="!businessForm.valid || isSubmitting"
-                >
+                <button type="submit" class="btn btn-primary btn-lg custom-submit-btn"
+                  [disabled]="!businessForm.valid || isSubmitting">
                   <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2" role="status"></span>
                   <i *ngIf="!isSubmitting" class="bi bi-send me-2"></i>
                   {{ isSubmitting ? 'Aguarde estamos aprendendo com seus dados...' : 'Enviar Informações' }}
@@ -162,7 +152,7 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
-      
+
       <div class="modal-body">
         <div class="tips-content">
           <h6 class="tip-title">
@@ -174,7 +164,8 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
             <li><strong>Produtos/Serviços:</strong> O que você oferece especificamente?</li>
             <li><strong>Diferenciais:</strong> O que te torna único no mercado?</li>
             <li><strong>Público-alvo:</strong> Quem são seus clientes ideais?</li>
-            <li><strong>Localização e Telefone:</strong> Cidade, bairro ou região de atuação, email, telefone e whatsapp</li>
+            <li><strong>Localização e Telefone:</strong> Cidade, bairro ou região de atuação, email, telefone e whatsapp
+            </li>
             <li><strong>Horários:</strong>Qual o horario e dias de funcionamento?</li>
             <li><strong>Outros detalhes:</strong>wifi, estacionamento, capacidade de pessoas, atende em domicilio</li>
           </ul>
@@ -187,34 +178,43 @@ Iremos corrigir somente erros de gramática e ortografia, mantendo o conteúdo o
             <div class="example-text">
               <p class="mb-1"><strong>Jsuis Consultoria Digital</strong></p>
               <p class="small mb-1">
-                Setor: Consultoria em Transformacao Digital e Automacao Comercial | Publico-alvo: PMEs de varejo fisico e e-commerce em expansion.
+                Setor: Consultoria em Transformacao Digital e Automacao Comercial | Publico-alvo: PMEs de varejo fisico
+                e e-commerce em expansion.
               </p>
               <p class="fw-semibold mb-1">Servicos e Propostas de Valor</p>
               <ul class="mb-2">
-                <li>Diagnostico de Processos Comerciais – avalia fluxo de vendas, estoque e atendimento para mapear gargalos.</li>
-                <li>Implementacao de Automacao – integra ERPs e plataformas de e-commerce (Tiny, Omie, Loja Integrada) para reduzir retrabalhos.</li>
-                <li>Treinamento e Suporte – capacitacao das equipes e suporte continuo com chat + consultoria mensal.</li>
-                <li>Monitoramento de Indicadores – dashboards com KPIs estrategicos (ticket medio, ciclo de caixa, taxa de conversao).</li>
+                <li>Diagnostico de Processos Comerciais – avalia fluxo de vendas, estoque e atendimento para mapear
+                  gargalos.</li>
+                <li>Implementacao de Automacao – integra ERPs e plataformas de e-commerce (Tiny, Omie, Loja Integrada)
+                  para reduzir retrabalhos.</li>
+                <li>Treinamento e Suporte – capacitacao das equipes e suporte continuo com chat + consultoria mensal.
+                </li>
+                <li>Monitoramento de Indicadores – dashboards com KPIs estrategicos (ticket medio, ciclo de caixa, taxa
+                  de conversao).</li>
               </ul>
               <p class="fw-semibold mb-1">Casos de Uso e Beneficios</p>
               <ul class="mb-2">
-                <li>Reducao de 35% no tempo de fechamento de pedidos automatizando conferencia de estoque e faturamento.</li>
-                <li>Aumento de 18% na taxa de conversao apos integracao omnichannel com respostas padronizadas em chatbots e WhatsApp via RAG.</li>
+                <li>Reducao de 35% no tempo de fechamento de pedidos automatizando conferencia de estoque e faturamento.
+                </li>
+                <li>Aumento de 18% na taxa de conversao apos integracao omnichannel com respostas padronizadas em
+                  chatbots e WhatsApp via RAG.</li>
               </ul>
               <p class="fw-semibold mb-1">Logistica de Atendimento</p>
               <ul class="mb-0">
                 <li>Canais: WhatsApp Business com integracoes de FAQ + portal web para tickets.</li>
                 <li>SLA: respostas em ate 4h uteis com videos personalizados para temas complexos.</li>
                 <li>Endereco: Av. Paulista, 1000 - Sao Paulo, SP - 01310-100</li>
-                <li>Telefone e WhatsApp: +55 (11) 99999-9999 | Email: jsuisconsultoria@server.com.br | Website: www.jsuisconsultoria.com.br</li>
-                <li>Horario: Segunda a Sexta, 9h as 18h | Redes Sociais: LinkedIn, Instagram, Facebook (@jsuisconsultoria)</li>
+                <li>Telefone e WhatsApp: +55 (11) 99999-9999 | Email: jsuisconsultoria@server.com.br | Website:
+                  www.jsuisconsultoria.com.br</li>
+                <li>Horario: Segunda a Sexta, 9h as 18h | Redes Sociais: LinkedIn, Instagram, Facebook
+                  (@jsuisconsultoria)</li>
               </ul>
             </div>
           </div>
 
           <div class="alert-tip">
             <i class="bi bi-info-circle me-2"></i>
-            <strong>Importante:</strong> Quanto mais detalhada e específica for sua descrição, 
+            <strong>Importante:</strong> Quanto mais detalhada e específica for sua descrição,
             melhor será a configuração do seu chatbot para atender seus clientes!
           </div>
         </div>

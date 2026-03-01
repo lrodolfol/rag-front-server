@@ -31,11 +31,11 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
 
   isSubmitting = false;
   showSuccessMessage = false;
-  countdown = 10;
+  showErrorMessage = false;
   showTipsModal = false;
   isLoading: boolean = false;
 
-  private apiUrl =  `${this.apiAddress}/services`;
+  private apiUrl = `${this.apiAddress}/services`;
   private getUserData = `${this.apiAddress}/user`;
 
   ngOnInit(): void {
@@ -62,11 +62,17 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
         this.isLoading = false;
       },
       error: (error) => {
-        if(error.status === 401) {
+        if (error.status === 401) {
+          this.showErrorMessage = true;
           this.isLoading = false;
           this.logout();
-          this.router.navigate(['/auth']);
-          return;
+          this.startCountdown(0, '/index');
+        }
+
+        if (error.status === 403) {
+          this.showErrorMessage = true;
+          this.isLoading = false;
+          this.startCountdown(0, '/be-premium');
         }
       }
     });
@@ -103,23 +109,12 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   private handleSuccess(): void {
     this.isSubmitting = false;
     this.showSuccessMessage = true;
-    this.startCountdown();
+    this.startCountdown(10, '/portal');
   }
 
   private handleError(): void {
     this.isSubmitting = false;
     alert('Erro ao enviar formulário. Tente novamente.');
-  }
-
-  private startCountdown(): void {
-    const countdownInterval = setInterval(() => {
-      this.countdown--;
-
-      if (this.countdown <= 0) {
-        clearInterval(countdownInterval);
-        this.router.navigate(['/portal']);
-      }
-    }, 1000);
   }
 
   clearForm(): void {

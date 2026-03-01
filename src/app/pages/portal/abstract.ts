@@ -4,12 +4,14 @@ import { AuthService } from "src/app/services/auth.service";
 import { environment } from '../../../environments/environments';
 
 export class BasePortalComponent {
+    title = 'TI NOS NEGÓCIOS';
     protected apiAddress = `${environment.urlApi}api/v1`;
 
     constructor(
         protected authService: AuthService,
         protected router: Router,
-        protected http: HttpClient
+        protected http: HttpClient,
+        protected countdown: number = 10
     ) {
         this.validateTokenApi();
     }
@@ -38,4 +40,16 @@ export class BasePortalComponent {
             }
         });
     }
+
+    protected startCountdown(startCount: number, pathRedirect: string): void {
+        this.countdown = startCount;
+        const countdownInterval = setInterval(() => {
+        this.countdown--;
+
+        if (this.countdown <= 0) {
+            clearInterval(countdownInterval);
+            this.router.navigate([`/${pathRedirect}`]);
+        }
+        }, 1000);
+    }    
 }
