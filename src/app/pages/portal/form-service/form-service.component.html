@@ -35,7 +35,9 @@
           <div class="card-header bg-primary text-white">
             <h5 class="card-title mb-0">
               <i class="bi bi-building me-2"></i>
-              Informações do seu Negócio - {{formData.title}}
+              Informações do seu Negócio - 
+              <span *ngIf="isLoading" class="placeholder-glow">Carregando...</span>
+              <span *ngIf="!isLoading" class="fw-bold">{{formData.title}}</span>
             </h5>
           </div>
           
