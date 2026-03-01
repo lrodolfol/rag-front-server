@@ -33,6 +33,7 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   showSuccessMessage = false;
   countdown = 10;
   showTipsModal = false;
+  isLoading: boolean = false;
 
   private apiUrl =  `${this.apiAddress}/services`;
   private getUserData = `${this.apiAddress}/user`;
@@ -46,6 +47,7 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   }
 
   getUserDataIfLogged(): void {
+    this.isLoading = true;
     const headers = {
       'Authorization': `Bearer ${this.authService.getToken()}`
     }
@@ -57,9 +59,11 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
 
         this.formData.title = company;
         this.formData.description = description;
+        this.isLoading = false;
       },
       error: (error) => {
         if(error.status === 401) {
+          this.isLoading = false;
           this.logout();
           this.router.navigate(['/auth']);
           return;
@@ -135,6 +139,6 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
   }
 
   goToMenu(): void {
-    this.router.navigate(['/portal']);
+    this.router.navigate(['/portalych']);
   }
 }
