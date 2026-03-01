@@ -117,8 +117,7 @@ export class FormServiceComponent extends BasePortalComponent implements OnInit 
 
       if (this.countdown <= 0) {
         clearInterval(countdownInterval);
-        this.logout();
-        this.router.navigate(['/index']);
+        this.router.navigate(['/portal']);
       }
     }, 1000);
   }
